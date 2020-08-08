@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_08_141246) do
+ActiveRecord::Schema.define(version: 2020_08_08_145507) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "house_no"
@@ -23,6 +23,18 @@ ActiveRecord::Schema.define(version: 2020_08_08_141246) do
     t.string "location_type"
     t.bigint "location_id"
     t.index ["location_type", "location_id"], name: "index_addresses_on_location_type_and_location_id"
+  end
+
+  create_table "menu_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.boolean "veg"
+    t.integer "price"
+    t.boolean "available", default: true
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "restaurant_id"
+    t.index ["restaurant_id"], name: "index_menu_items_on_restaurant_id"
   end
 
   create_table "restaurants", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -41,4 +53,5 @@ ActiveRecord::Schema.define(version: 2020_08_08_141246) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "menu_items", "restaurants"
 end
