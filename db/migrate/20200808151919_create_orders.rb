@@ -5,8 +5,8 @@ class CreateOrders < ActiveRecord::Migration[6.0]
       t.string :payment_mode
       t.float :total_cost
 
-      t.references :restaurant, index: true
-      t.references :user, index: true
+      t.references :restaurant, foreign_key: true ,index: true 
+      t.references :user, foreign_key: true ,index: true 
 
       t.timestamps
     end

@@ -5,7 +5,7 @@ class CreateReviews < ActiveRecord::Migration[6.0]
       t.text :comment
       t.string :image
 
-      t.references :restaurant, index: true
+      t.references :restaurant, foreign_key: true ,index: true 
 
       t.timestamps
     end

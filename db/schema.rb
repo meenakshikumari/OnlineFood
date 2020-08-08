@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_08_152404) do
+ActiveRecord::Schema.define(version: 2020_08_08_153223) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "house_no"
@@ -85,7 +85,9 @@ ActiveRecord::Schema.define(version: 2020_08_08_152404) do
     t.bigint "restaurant_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
     t.index ["restaurant_id"], name: "index_reviews_on_restaurant_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -105,4 +107,10 @@ ActiveRecord::Schema.define(version: 2020_08_08_152404) do
   end
 
   add_foreign_key "menu_items", "restaurants"
+  add_foreign_key "order_details", "menu_items"
+  add_foreign_key "order_details", "orders"
+  add_foreign_key "orders", "restaurants"
+  add_foreign_key "orders", "users"
+  add_foreign_key "reviews", "restaurants"
+  add_foreign_key "reviews", "users"
 end
