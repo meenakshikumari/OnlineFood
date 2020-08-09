@@ -35,8 +35,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.string   :name
       t.string   :mobile_number
       t.string   :role
-      t.boolean  :is_active
-
+      t.boolean  :is_active, default: true
 
       t.timestamps null: false
     end

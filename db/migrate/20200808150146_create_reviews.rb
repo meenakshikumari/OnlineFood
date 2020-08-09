@@ -1,7 +1,7 @@
 class CreateReviews < ActiveRecord::Migration[6.0]
   def change
     create_table :reviews do |t|
-      t.integer :rating
+      t.float :rating, default: 0.0
       t.text :comment
       t.string :image
 

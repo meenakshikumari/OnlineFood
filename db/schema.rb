@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_09_044950) do
+ActiveRecord::Schema.define(version: 2020_08_08_153223) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "house_no"
@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(version: 2020_08_09_044950) do
 
   create_table "menu_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
-    t.boolean "veg"
-    t.integer "price"
+    t.boolean "veg", default: true
+    t.float "price", default: 0.0
     t.boolean "available", default: true
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
@@ -38,10 +38,10 @@ ActiveRecord::Schema.define(version: 2020_08_09_044950) do
   end
 
   create_table "order_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "status"
-    t.float "cost"
+    t.string "status", default: "Pending"
+    t.float "cost", default: 0.0
     t.string "menu_item_name"
-    t.integer "quantity"
+    t.integer "quantity", default: 1
     t.bigint "menu_item_id"
     t.bigint "order_id"
     t.datetime "created_at", precision: 6, null: false
@@ -51,9 +51,9 @@ ActiveRecord::Schema.define(version: 2020_08_09_044950) do
   end
 
   create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "status"
+    t.string "status", default: "Pending"
     t.string "payment_mode"
-    t.float "total_cost"
+    t.float "total_cost", default: 0.0
     t.bigint "restaurant_id"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
@@ -65,13 +65,14 @@ ActiveRecord::Schema.define(version: 2020_08_09_044950) do
   create_table "restaurants", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "phone"
-    t.string "functional_hours"
+    t.time "open_time"
+    t.time "close_time"
     t.string "image"
     t.boolean "available_for_order", default: true
     t.boolean "active", default: true
-    t.boolean "veg", default: true
+    t.boolean "veg", default: false
     t.float "rating", default: 0.0
-    t.string "cost_for_two"
+    t.integer "cost_for_two", default: 0
     t.string "tags"
     t.string "cuisines"
     t.datetime "created_at", precision: 6, null: false
@@ -79,7 +80,7 @@ ActiveRecord::Schema.define(version: 2020_08_09_044950) do
   end
 
   create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "rating"
+    t.float "rating", default: 0.0
     t.text "comment"
     t.string "image"
     t.bigint "restaurant_id"
@@ -99,7 +100,7 @@ ActiveRecord::Schema.define(version: 2020_08_09_044950) do
     t.string "name"
     t.string "mobile_number"
     t.string "role"
-    t.boolean "is_active"
+    t.boolean "is_active", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
