@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_08_153223) do
+ActiveRecord::Schema.define(version: 2020_08_09_044950) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "house_no"
@@ -67,10 +67,10 @@ ActiveRecord::Schema.define(version: 2020_08_08_153223) do
     t.string "phone"
     t.string "functional_hours"
     t.string "image"
-    t.boolean "available_for_order"
-    t.boolean "active"
-    t.boolean "veg"
-    t.float "rating"
+    t.boolean "available_for_order", default: true
+    t.boolean "active", default: true
+    t.boolean "veg", default: true
+    t.float "rating", default: 0.0
     t.string "cost_for_two"
     t.string "tags"
     t.string "cuisines"
