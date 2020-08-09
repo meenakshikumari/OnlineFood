@@ -4,4 +4,4 @@
 
 ![erd](https://github.com/meenakshikumari/OnlineFood/blob/master/OnlineFoodOrder.png?raw=true)
 
-## Have added sample data in seed file, run ``` rails db:seed ``` 
+Have added sample data in seed file, run ``` rails db:seed ``` 
