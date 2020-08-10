@@ -8,4 +8,6 @@ class Restaurant < ApplicationRecord
   has_many :orders
 
   validates_presence_of :address, :menu_items
+
+  scope :active, -> { where status: true }
 end

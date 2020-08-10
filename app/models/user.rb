@@ -9,4 +9,7 @@ class User < ApplicationRecord
   has_many :reviews
 
   validates_presence_of :address
+
+  scope :active, -> { where is_active: true }
+
 end
