@@ -7,4 +7,6 @@ class User < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_one :address,  as: :location, dependent: :destroy
   has_many :reviews
+
+  validates_presence_of :address
 end
